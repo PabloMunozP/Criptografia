@@ -22,13 +22,15 @@ def login(username,password):#Inicia sesion en la pagina elegida
     login= Browser.find_element_by_xpath("//*[contains(text(),'Inicia Sesión')]")
     Browser.execute_script("arguments[0].click();",login)
     
-    user= WebDriverWait(Browser,10).until(EC.presence_of_element_located((By.XPATH,"//*[@id='root']/div/div/div[1]/div/div/div/div[2]/div/div[1]/form/div[1]/div/input")))
+    user= WebDriverWait(Browser,10).until(EC.presence_of_element_located((By.XPATH,
+    "//*[@id='root']/div/div/div[1]/div/div/div/div[2]/div/div[1]/form/div[1]/div/input")))
     user.send_keys(Keys.CONTROL + 'a')
     user.send_keys(Keys.DELETE)
     user.send_keys(username)
     time.sleep(1)
 
-    pwd=WebDriverWait(Browser,10).until(EC.presence_of_element_located((By.XPATH,"//*[@id='root']/div/div/div[1]/div/div/div/div[2]/div/div[1]/form/div[2]/div/div/input")))
+    pwd=WebDriverWait(Browser,10).until(EC.presence_of_element_located((By.XPATH,
+    "//*[@id='root']/div/div/div[1]/div/div/div/div[2]/div/div[1]/form/div[2]/div/div/input")))
     pwd.send_keys(Keys.CONTROL + 'a')
     pwd.send_keys(Keys.DELETE)
     pwd.send_keys(password)
@@ -38,9 +40,11 @@ def login(username,password):#Inicia sesion en la pagina elegida
 def changePassword(username,password,newPassword):#falta terminar
     login(username,password)
 
-    Browser.get("https://www.natura.cl/mis-datos")#intente acceder mediante codigo pero al ser un dropdown se activaba mediante js al pasar el mouse.
+    #intente acceder mediante codigo pero al ser un dropdown se activaba mediante js al pasar el mouse.
+    Browser.get("https://www.natura.cl/mis-datos")
     time.sleep(1)
-    user= WebDriverWait(Browser,10).until(EC.presence_of_element_located((By.XPATH,"//*[@id='root']/div/div/div[2]/div/div[2]/div/div[8]/a")))
+    user= WebDriverWait(Browser,10).until(EC.presence_of_element_located((By.XPATH,
+    "//*[@id='root']/div/div/div[2]/div/div[2]/div/div[8]/a")))
     Browser.execute_script("arguments[0].click();",user)
     time.sleep(1)
 
@@ -60,7 +64,8 @@ def resetPassword(email):
     time.sleep(1)
     Browser.find_element_by_xpath("//*[@id='root']/div/div/div[1]/div/div/div/div[2]/div/a").click()
 
-    user=WebDriverWait(Browser,10).until(EC.presence_of_element_located((By.XPATH,"//*[@id='root']/div/div/div[1]/div/div/div/div[2]/div/div[2]/div[1]/div/div/div/div/form/div/div/input")))
+    user=WebDriverWait(Browser,10).until(EC.presence_of_element_located((By.XPATH,
+    "//*[@id='root']/div/div/div[1]/div/div/div/div[2]/div/div[2]/div[1]/div/div/div/div/form/div/div/input")))
     user.send_keys(email + Keys.ENTER)
     print("reset exitoso")
 
@@ -125,7 +130,8 @@ def createAcc(name,lastname,email,password,rut,birth="01/01/1990",gender="Mascul
 def close():
     Browser.close()
 
-def fuerzaBruta(email,base="abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789",intentos=100,largoMin=6):
+def fuerzaBruta(email,base="abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789",
+intentos=100,largoMin=6):
     chars=[]
     for char in base:
         chars.append(char)
@@ -143,10 +149,11 @@ def fuerzaBruta(email,base="abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUV
 
 if __name__== "__main__":
     setBrowser()
-    #createAcc("juanito","perez","pruebacripto2@yopmail.com","contra123","21377161-2","15/02/1989","Masculino")
+    #createAcc("juanito","perez","pruebacripto2@yopmail.com","contra123","21377161-2")
     #login("pruebacripto2@yopmail.com","contra123")
     #resetPassword("pruebacripto2@yopmail.com")
     #changePassword("pruebacripto2@yopmail.com","contra123","nuevaContra123")
     #fuerzaBruta("pruebacripto2@yopmail.com")
     time.sleep(20)
     close()
+
