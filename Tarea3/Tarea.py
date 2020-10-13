@@ -13,7 +13,7 @@ html.write('''
         <title>Pagina generada por python</title>
         <body>
             <p>Esta pagina contiene un mensaje secreto</p>
-            <div class="Camellia" id= "%s" > Texto</div>
+            <div class="DES" id= "%s" > Texto</div>
         </body>
     </html>
         ''' % msg.hex())
